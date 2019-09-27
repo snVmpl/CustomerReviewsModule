@@ -20,15 +20,11 @@ namespace CustomerReviewsModule.Web.Controllers.Api
             _customerReviewService = customerReviewService;
         }
 
-        // GET: api/CustomerReviewsModule
-        [HttpGet]
-        [Route("")]
-        [CheckPermission(Permission = Permissions.Read)]
-        public IHttpActionResult Get()
-        {
-            return Ok(new { result = "Hello world!" });
-        }
-
+        /// <summary>
+        /// Search customer review
+        /// </summary>
+        /// <param name="criteria">Search criteria</param>
+        /// <returns></returns>
         [HttpPost]
         [Route("search")]
         [ResponseType(typeof(GenericSearchResult<CustomerReview>))]
@@ -40,8 +36,11 @@ namespace CustomerReviewsModule.Web.Controllers.Api
         }
 
         /// <summary>
-        ///  Create new or update existing customer review
+        /// Create new or update existing customer review
         /// </summary>
+        /// <remarks>
+        /// Create new or update existing customer review
+        /// </remarks>
         /// <param name="customerReviews">Customer reviews</param>
         /// <returns></returns>
         [HttpPost]
