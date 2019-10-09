@@ -25,32 +25,32 @@
             };
 
             blade.selectNode = function (data) {
-                //$scope.selectedNodeId = data.id;
+                $scope.selectedNodeId = data.id;
 
-                //var newBlade = {
-                //    id: 'reviewDetails',
-                //    currentEntityId: data.id,
-                //    currentEntity: data,
-                //    title: data.name,
-                //    controller: 'virtoCommerce.storeModule.storeDetailController',
-                //    template: 'Modules/$(VirtoCommerce.Store)/Scripts/blades/store-detail.tpl.html'
-                //};
-                //bladeNavigationService.showBlade(newBlade, blade);
+                var newBlade = {
+                    id: 'reviewDetails',
+                    currentEntityId: data.id,
+                    currentEntity: data,
+                    title: data.authorNickname,
+                    controller: 'customerReviewsModule.reviewDetailController',
+                    template: 'Modules/$(customerReviewsModule)/Scripts/blades/customer-review-detail.tpl.html'
+                };
+                bladeNavigationService.showBlade(newBlade, blade);
             };
 
-            //function openBladeNew() {
-            //    $scope.selectedNodeId = null;
+            function openBladeNew() {
+                $scope.selectedNodeId = null;
 
-            //    var newBlade = {
-            //        id: 'storeDetails',
-            //        currentEntity: {},
-            //        title: 'stores.blades.new-store-wizard.title',
-            //        subtitle: 'stores.blades.new-store-wizard.subtitle',
-            //        controller: 'virtoCommerce.storeModule.newStoreWizardController',
-            //        template: 'Modules/$(VirtoCommerce.Store)/Scripts/wizards/newStore/new-store-wizard.tpl.html'
-            //    };
-            //    bladeNavigationService.showBlade(newBlade, blade);
-            //}
+                var newBlade = {
+                    id: 'storeDetails',
+                    currentEntity: {},
+                    title: 'customerReviews.blades.new-customer-review-wizard.title',
+                    subtitle: 'customerReviews.blades.new-customer-review-wizard.subtitle',
+                    controller: 'customerReviewsModule.newReviewDetailController',
+                    template: 'Modules/$(customerReviewsModule)/Scripts/blades/new-customer-review-wizard.tpl.html'
+                };
+                bladeNavigationService.showBlade(newBlade, blade);
+            }
 
             blade.headIcon = 'fa-comments';
 
@@ -61,15 +61,15 @@
                     canExecuteMethod: function () {
                         return true;
                     }
+                },
+                {
+                    name: "platform.commands.add", icon: 'fa fa-plus',
+                    executeMethod: openBladeNew,
+                    canExecuteMethod: function () {
+                        return true;
+                    },
+                    permission: 'store:create'
                 }
-                //{
-                //    name: "platform.commands.add", icon: 'fa fa-plus',
-                //    executeMethod: openBladeNew,
-                //    canExecuteMethod: function () {
-                //        return true;
-                //    },
-                //    permission: 'store:create'
-                //}
             ];
 
             // simple and advanced filtering

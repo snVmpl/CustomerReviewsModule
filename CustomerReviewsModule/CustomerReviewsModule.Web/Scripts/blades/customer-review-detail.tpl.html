@@ -1,0 +1,46 @@
+﻿<div class="blade-content">
+    <div class="blade-inner">
+        <div class="inner-block">
+            <form class="form" name="detailForm">
+                <div>
+                    <label class="form-label">{{ 'customerReviews.blades.new-customer-review-wizard.productId' | translate }}</label>
+                    <div class="form-input">
+                        <input required class="form-control" name="productId" ng-model="blade.currentEntity.productId" />
+                    </div>
+                    <label class="form-label">{{ 'customerReviews.blades.new-customer-review-wizard.authorNickname' | translate }}</label>
+                    <div class="form-input">
+                        <input required class="form-control" name="authorNickname" ng-model="blade.currentEntity.authorNickname" />
+                    </div>
+                    <label class="form-label">{{ 'customerReviews.blades.new-customer-review-wizard.content' | translate }}</label>
+                    <div class="form-input">
+                        <input required class="form-control" name="content" ng-model="blade.currentEntity.content" />
+                    </div>
+                    <label class="form-label">{{ 'customerReviews.blades.new-customer-review-wizard.isActive' | translate }}</label>
+                    <div class="form-input">
+                        <label class="form-label __switch">
+                            <input type="checkbox" ng-model="blade.currentEntity.isActive">
+                            <span class="switch"></span>
+                        </label>
+                    </div>
+                    <label class="form-label">{{ 'customerReviews.blades.new-customer-review-wizard.rating' | translate }}</label>
+                    <div class="form-input">
+                        <ui-select ng-model="blade.currentEntity.rating">
+                            <ui-select-match>{{blade.currentEntity.rating}}</ui-select-match>
+                            <ui-select-choices repeat="x in blade.currentEntity.ratingTypes | filter: $select.search">
+                                <span ng-bind-html="x | highlight: $select.search"></span>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                    <label class="form-label">{{ 'customerReviews.blades.new-customer-review-wizard.pros' | translate }}</label>
+                    <div class="form-input">
+                        <input required class="form-control" name="pros" ng-model="blade.currentEntity.pros" />
+                    </div>
+                    <label class="form-label">{{ 'customerReviews.blades.new-customer-review-wizard.cons' | translate }}</label>
+                    <div class="form-input">
+                        <input required class="form-control" name="cons" ng-model="blade.currentEntity.cons" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

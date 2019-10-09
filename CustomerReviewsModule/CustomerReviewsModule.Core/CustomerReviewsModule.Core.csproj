@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Rating.cs" />
     <Compile Include="Models\CustomerReview.cs" />
     <Compile Include="Models\CustomerReviewSearchCriteria.cs" />
     <Compile Include="ModuleConstants.cs" />

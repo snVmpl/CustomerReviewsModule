@@ -1,4 +1,5 @@
 ﻿using CustomerReviewsModule.Core.Services;
+using CustomerReviewsModule.Data;
 using CustomerReviewsModule.Data.Repositories;
 using CustomerReviewsModule.Data.Services;
 using Microsoft.Practices.Unity;
@@ -48,6 +49,8 @@ namespace CustomerReviewsModule.Web
 
             _container.RegisterType<ICustomerReviewService, CustomerReviewService>();
 
+            _container.RegisterType<IRatingService, RatingService>();
+
 
             // This method is called for each installed module on the first stage of initialization.
 
@@ -68,7 +71,7 @@ namespace CustomerReviewsModule.Web
             var storeSettings = settingManager.GetModuleSettings("CustomerReviews.Web").Where(x => storeSettingsNames.Contains(x.Name)).ToArray();
             settingManager.RegisterModuleSettings("VirtoCommerce.Store", storeSettings);
 
-            settingManager.RegisterModuleSettings("VirtoCommerce.Store", storeSettings);
+            //AbstractTypeFactory<VirtoCommerce.Domain.Catalog.Model.CatalogProduct>.OverrideType<VirtoCommerce.Domain.Catalog.Model.CatalogProduct, RatingProductEntity>();
 
             // This method is called for each installed module on the second stage of initialization.
 

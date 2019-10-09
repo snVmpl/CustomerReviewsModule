@@ -67,5 +67,20 @@ namespace CustomerReviewsModule.Web.Controllers.Api
             _customerReviewService.DeleteCustomerReviews(ids);
             return StatusCode(HttpStatusCode.NoContent);
         }
+
+        /// <summary>
+        /// Get products rating by ID
+        /// </summary>
+        /// <param name="productId">products id</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("product/rating")]
+        [ResponseType(typeof(double?))]
+        [CheckPermission(Permission = Permissions.Read)]
+        public IHttpActionResult ProductRating(string productId)
+        {
+            double? ratings = _customerReviewService.GetProductsRating(productId);
+            return Ok(ratings);
+        }
     }
 }

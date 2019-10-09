@@ -7,6 +7,17 @@
           "modifiedDate": "Last updated",
           "no-review": "No Customer Reviews found"
         }
+      },
+      "new-customer-review-wizard": {
+        "title": "New Customer Review",
+        "subtitle": "Customer Review",
+        "authorNickname": "Author Nickname",
+        "isActive": "Active",
+        "content": "Content",
+        "productId": "ProductId",
+        "pros": "Pros",
+        "cons": "Cons",
+        "rating": "Rating"
       }
     },
     "widgets": {

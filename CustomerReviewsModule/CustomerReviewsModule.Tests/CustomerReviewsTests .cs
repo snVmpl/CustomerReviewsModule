@@ -1,5 +1,6 @@
 using CustomerReviewsModule.Core.Models;
 using CustomerReviewsModule.Core.Services;
+using CustomerReviewsModule.Data;
 using CustomerReviewsModule.Data.Repositories;
 using CustomerReviewsModule.Data.Services;
 using Moq;
@@ -16,6 +17,7 @@ namespace CustomerReviewsModule.Tests
     {
         private ICustomerReviewSearchService _customerReviewSearchService;
         private Mock<Func<ICustomerReviewRepository>> _customerReviewRepoMock;
+        private Mock<IRatingService> _ratingServiceMock;
         private ICustomerReviewService _customerReviewService;
 
         private string _testProductId => "testProductId";
@@ -29,7 +31,8 @@ namespace CustomerReviewsModule.Tests
         private void Init()
         {
             _customerReviewRepoMock = new Mock<Func<ICustomerReviewRepository>>();
-            _customerReviewService = new CustomerReviewService(_customerReviewRepoMock.Object);
+            _ratingServiceMock = new Mock<IRatingService>();
+            _customerReviewService = new CustomerReviewService(_customerReviewRepoMock.Object, _ratingServiceMock.Object);
             _customerReviewSearchService = new CustomerReviewSearchService(_customerReviewRepoMock.Object, _customerReviewService);
 
             var customers = new List<CustomerReviewEntity>

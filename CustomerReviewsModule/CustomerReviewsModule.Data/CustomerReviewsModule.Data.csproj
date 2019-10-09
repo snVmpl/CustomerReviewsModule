@@ -73,21 +73,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IRatingService.cs" />
     <Compile Include="Migrations\201909251358110_Initial.cs" />
     <Compile Include="Migrations\201909251358110_Initial.Designer.cs">
       <DependentUpon>201909251358110_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910021055531_ExtensionCustomerReview.cs" />
+    <Compile Include="Migrations\201910021055531_ExtensionCustomerReview.Designer.cs">
+      <DependentUpon>201910021055531_ExtensionCustomerReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910041513049_AddRatingToProduct.cs" />
+    <Compile Include="Migrations\201910041513049_AddRatingToProduct.Designer.cs">
+      <DependentUpon>201910041513049_AddRatingToProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\CustomerReviewEntity.cs" />
+    <Compile Include="Models\CustomerReviewEntity.cs" />
     <Compile Include="Repositories\CustomerReviewRepository.cs" />
-    <Compile Include="Repositories\ICustomerReviewRepository.cs" />
+    <Compile Include="Abstract\ICustomerReviewRepository.cs" />
+    <Compile Include="Models\RatingProductEntity.cs" />
     <Compile Include="Services\CustomerReviewSearchService.cs" />
     <Compile Include="Services\CustomerReviewService.cs" />
+    <Compile Include="Services\RatingService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\CustomerReviewsModule.Core\CustomerReviewsModule.Core.csproj">
       <Project>{2afa12e8-5e8b-4f94-9b00-5b0ac3b49ee0}</Project>
@@ -100,6 +109,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201909251358110_Initial.resx">
       <DependentUpon>201909251358110_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910021055531_ExtensionCustomerReview.resx">
+      <DependentUpon>201910021055531_ExtensionCustomerReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910041513049_AddRatingToProduct.resx">
+      <DependentUpon>201910041513049_AddRatingToProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

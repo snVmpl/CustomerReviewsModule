@@ -3,18 +3,13 @@
 namespace CustomerReviewsModule.Core.Services
 {
     public interface ICustomerReviewService
-
     {
-
         CustomerReview[] GetByIds(string[] ids);
-
-
 
         void SaveCustomerReviews(CustomerReview[] items);
 
-
-
         void DeleteCustomerReviews(string[] ids);
 
+        double? GetProductsRating(string id);
     }
 }

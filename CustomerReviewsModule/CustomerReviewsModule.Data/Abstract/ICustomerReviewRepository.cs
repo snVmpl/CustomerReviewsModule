@@ -7,9 +7,14 @@ namespace CustomerReviewsModule.Data.Repositories
     {
         IQueryable<CustomerReviewEntity> CustomerReviews { get; }
 
+        IQueryable<RatingProductEntity> Products { get; }
+
+        RatingProductEntity GetProductById(string id);
+
         CustomerReviewEntity[] GetByIds(string[] ids);
 
-        void DeleteCustomerReviews(string[] ids);
+        CustomerReviewEntity[] GetProductReviews(string productId);
 
+        void DeleteCustomerReviews(string[] ids);
     }
 }

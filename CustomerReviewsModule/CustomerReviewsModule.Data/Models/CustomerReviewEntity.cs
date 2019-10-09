@@ -1,4 +1,5 @@
-﻿using CustomerReviewsModule.Core.Models;
+﻿using CustomerReviewsModule.Core.Enums;
+using CustomerReviewsModule.Core.Models;
 using System;
 using System.ComponentModel.DataAnnotations;
 using VirtoCommerce.Platform.Core.Common;
@@ -13,6 +14,15 @@ namespace CustomerReviewsModule.Data.Repositories
         [Required]
         [StringLength(1024)]
         public string Content { get; set; }
+
+        [StringLength(256)]
+        public string Pros { get; set; }
+
+        [StringLength(256)]
+        public string Cons { get; set; }
+
+        [Required]
+        public Rating Rating { get; set; }
 
         public bool IsActive { get; set; }
 
@@ -36,6 +46,12 @@ namespace CustomerReviewsModule.Data.Repositories
             customerReview.IsActive = IsActive;
             customerReview.ProductId = ProductId;
 
+            customerReview.Pros = Pros;
+            customerReview.Cons = Cons;
+            customerReview.Rating = Rating;
+            customerReview.RatingNumber = (int)Rating;
+            customerReview.RatingTypes = Enum.GetNames(typeof(Rating));
+
             return customerReview;
         }
 
@@ -57,6 +73,10 @@ namespace CustomerReviewsModule.Data.Repositories
             IsActive = customerReview.IsActive;
             ProductId = customerReview.ProductId;
 
+            Pros = customerReview.Pros;
+            Cons = customerReview.Cons;
+            Rating = customerReview.Rating;
+
             return this;
         }
 
@@ -69,6 +89,10 @@ namespace CustomerReviewsModule.Data.Repositories
             target.Content = Content;
             target.IsActive = IsActive;
             target.ProductId = ProductId;
+
+            target.Pros = Pros;
+            target.Cons = Cons;
+            target.Rating = Rating;
         }
     }
 }

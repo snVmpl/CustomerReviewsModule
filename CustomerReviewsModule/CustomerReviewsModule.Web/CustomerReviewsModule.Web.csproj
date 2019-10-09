@@ -140,8 +140,12 @@
   <ItemGroup>
     <Content Include="module.manifest" />
     <Content Include="Content\css\customer-reviews-module.css" />
+    <Content Include="Scripts\blades\new-customer-review-wizard.js" />
+    <Content Include="Scripts\blades\new-customer-review-wizard.tpl.html" />
     <Content Include="Scripts\blades\reviews-list.js" />
     <Content Include="Scripts\blades\reviews-list.tpl.html" />
+    <Content Include="Scripts\blades\customer-review-detail.js" />
+    <Content Include="Scripts\blades\customer-review-detail.tpl.html" />
     <Content Include="Scripts\module.js" />
     <Content Include="Scripts\resources\customer-reviews-module-api.js" />
     <Content Include="Scripts\widgets\customerReviewWidget.js" />

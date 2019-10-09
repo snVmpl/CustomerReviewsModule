@@ -11,10 +11,13 @@ namespace CustomerReviewsModule.Data.Services
     public class CustomerReviewService : ServiceBase, ICustomerReviewService
     {
         private readonly Func<ICustomerReviewRepository> _repositoryFactory;
+        private readonly IRatingService _ratingService;
 
-        public CustomerReviewService(Func<ICustomerReviewRepository> repositoryFactory)
+        public CustomerReviewService(Func<ICustomerReviewRepository> repositoryFactory,
+            IRatingService ratingService)
         {
             _repositoryFactory = repositoryFactory;
+            _ratingService = ratingService;
         }
 
         public CustomerReview[] GetByIds(string[] ids)
@@ -36,10 +39,11 @@ namespace CustomerReviewsModule.Data.Services
                 using (var changeTracker = GetChangeTracker(repository))
                 {
                     var alreadyExistEntities = repository.GetByIds(items.Where(m => !m.IsTransient()).Select(x => x.Id).ToArray());
-                    foreach (var derivativeContract in items)
+                    foreach (var item in items)
                     {
-                        var sourceEntity = AbstractTypeFactory<CustomerReviewEntity>.TryCreateInstance().FromModel(derivativeContract, pkMap);
+                        var sourceEntity = AbstractTypeFactory<CustomerReviewEntity>.TryCreateInstance().FromModel(item, pkMap);
                         var targetEntity = alreadyExistEntities.FirstOrDefault(x => x.Id == sourceEntity.Id);
+                        bool needRecountRating = targetEntity == null || targetEntity.Rating != sourceEntity.Rating;
                         if (targetEntity != null)
                         {
                             changeTracker.Attach(targetEntity);
@@ -48,6 +52,11 @@ namespace CustomerReviewsModule.Data.Services
                         else
                         {
                             repository.Add(sourceEntity);
+                        }
+                        if (needRecountRating)
+                        {
+                            var product = repository.GetProductById(sourceEntity.ProductId);
+                            product.Rating = _ratingService.Count(sourceEntity);
                         }
                     }
 
@@ -64,6 +73,16 @@ namespace CustomerReviewsModule.Data.Services
                 repository.DeleteCustomerReviews(ids);
                 CommitChanges(repository);
             }
+        }
+
+        public double? GetProductsRating(string id)
+        {
+            double? result;
+            using (var repository = _repositoryFactory())
+            {
+                result = repository.GetProductById(id).Rating;
+            }
+            return result;
         }
     }
 }
